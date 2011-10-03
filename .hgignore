@@ -1,0 +1,8 @@
+syntax:glob
+pom.xml
+*jar
+lib/
+classes/
+.lein-failures
+.lein-deps-sum
+docs/
