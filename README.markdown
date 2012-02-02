@@ -12,7 +12,7 @@ Clojure.
 
 Slap this in your `project.clj` `:dependencies`:
 
-    [postmark "1.0.0"]
+    [postmark "1.1.0"]
 
 ## Usage
 
