@@ -1,3 +1,6 @@
+Usage
+=====
+
 First you need to load the `postmark` function:
 
     :::clojure

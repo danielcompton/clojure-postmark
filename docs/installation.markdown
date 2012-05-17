@@ -1,3 +1,6 @@
+Installation
+============
+
 To get started just slap this in your `project.clj` `:dependencies`:
 
     [postmark "1.1.0"]
