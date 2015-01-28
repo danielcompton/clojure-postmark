@@ -1,0 +1,12 @@
+*.class
+*jar
+.cake
+/.lein-*
+/checkouts
+/classes
+/docs/build
+/lib
+/target
+pom.xml
+pom.xml.asc
+scratch.clj
