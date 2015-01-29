@@ -1,4 +1,4 @@
-Copyright (c) 2011 Steve Losh and contributors
+Copyright (c) 2011-2015 Steve Losh and contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
