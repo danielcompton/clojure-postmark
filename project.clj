@@ -1,5 +1,10 @@
 (defproject postmark "1.2.0-SNAPSHOT"
   :description "Clojure bindings for http://postmarkapp.com/"
+  :url "https://github.com/sjl/clojure-postmark"
+  :scm {:name "git"
+        :url "https://github.com/sjl/clojure-postmark"}
+  :license {:name "MIT"
+            :url "https://github.com/sjl/clojure-postmark/blob/master/LICENSE.markdown"}
   :exclusions  [org.clojure/clojure]
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [cheshire "5.4.0"]
