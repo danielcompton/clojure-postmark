@@ -35,12 +35,22 @@
   (or (= java.lang.String (class to))
       (<= (count to) 20)))
 
+(defn- format-attachments
+  "Format attachments given a map such as:
+  {:name \"my-file.csv\"
+   :content \"dGVzdCBjb250ZW50\"
+   :content-type \"text/csv\"}"
+  [coll]
+  (map (fn [a] {"Name" (:name a)
+                "Content" (:content a)
+                "ContentType" (:content-type a)}) coll))
+ 
 
 (defn- mail
   "Send an email with the Postmark API.
 
   Remember: Postmark only lets you send to at most twenty addresses at once."
-  [api-key from {:keys [to subject cc bcc tag text html reply-to]}]
+  [api-key from {:keys [to subject cc bcc tag text html reply-to attachments]}]
   {:pre [(no-more-than-20-recipients to)]}
   (send-to-postmark api-key {"From" from
                              "To" (get-to-string to)
@@ -50,7 +60,8 @@
                              "Tag" tag
                              "TextBody" text
                              "HtmlBody" html
-                             "ReplyTo" reply-to}))
+                             "ReplyTo" reply-to
+                             "Attachments" (format-attachments attachments)}))
 
 
 (defn postmark [api-key from]
