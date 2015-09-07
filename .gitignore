@@ -10,3 +10,4 @@
 pom.xml
 pom.xml.asc
 scratch.clj
+.nrepl-port
