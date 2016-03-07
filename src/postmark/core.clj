@@ -31,17 +31,17 @@
       to
       (join "," to))))
 
-(defn- no-more-than-20-recipients [to]
+(defn- no-more-than-50-recipients [to]
   (or (= java.lang.String (class to))
-      (<= (count to) 20)))
+      (<= (count to) 50)))
 
 
 (defn- mail
   "Send an email with the Postmark API.
 
-  Remember: Postmark only lets you send to at most twenty addresses at once."
+  Remember: Postmark only lets you send to at most fifty addresses at once."
   [api-key from {:keys [to subject cc bcc tag text html reply-to]}]
-  {:pre [(no-more-than-20-recipients to)]}
+  {:pre [(no-more-than-50-recipients to)]}
   (send-to-postmark api-key {"From" from
                              "To" (get-to-string to)
                              "Subject" subject
