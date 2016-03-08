@@ -15,7 +15,7 @@
        (generate-string)))
 
 (defn- send-to-postmark [api-key mail]
-  (let [resp (client/post "http://api.postmarkapp.com/email"
+  (let [resp (client/post "https://api.postmarkapp.com/email"
                           {:body (mail-to-json mail)
                            :headers {"X-Postmark-Server-Token" api-key}
                            :content-type :json
