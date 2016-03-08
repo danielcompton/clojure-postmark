@@ -8,7 +8,7 @@
   :exclusions  [org.clojure/clojure]
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [cheshire "5.4.0"]
-                 [clj-http "0.7.8"]]
+                 [clj-http "2.1.0"]]
   :plugins  [[lein-ancient "0.6.1"]
              [lein-kibit "0.0.8"]
              [jonase/eastwood "0.2.1"]]
