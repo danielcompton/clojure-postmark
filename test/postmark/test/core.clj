@@ -1,7 +1,7 @@
 (ns postmark.test.core
-  (:use [postmark.core])
-  (:use [cheshire.core :only (generate-string parse-string)])
-  (:use [clojure.test]))
+  (:require [postmark.core]
+            [cheshire.core :refer [generate-string parse-string]]
+            [clojure.test :refer :all]))
 
 
 (deftest test-mail-to-json
@@ -10,18 +10,18 @@
       "parse mail"))
 
 (deftest test-get-to-string
-  (is (= (@#'postmark.core/get-to-string nil)
+  (is (= (@#'postmark.core/to-string nil)
          nil)
       "get-to-string didn't handle nil")
 
-  (is (= (@#'postmark.core/get-to-string "foo")
+  (is (= (@#'postmark.core/to-string "foo")
          "foo")
       "get-to-string didn't pass a string through")
 
-  (is (= (@#'postmark.core/get-to-string ["foo"])
+  (is (= (@#'postmark.core/to-string ["foo"])
          "foo")
       "get-to-string didn't pass a string in a seq through")
 
-  (is (= (@#'postmark.core/get-to-string ["foo" "bar"])
+  (is (= (@#'postmark.core/to-string ["foo" "bar"])
          "foo,bar")
       "get-to-string didn't join a seq properly"))

@@ -1,7 +1,7 @@
 (ns postmark.core
-  (:require [clj-http.client :as client])
-  (:use [clojure.string :only (join)])
-  (:use [cheshire.core :only (generate-string parse-string)]))
+  (:require [clj-http.client :as client]
+            [clojure.string :refer [join]]
+            [cheshire.core :refer [generate-string parse-string]]))
 
 
 (defn- mail-to-json
@@ -9,7 +9,10 @@
 
   Falsey values will be removed from the map before serializing."
   [mail]
-  (generate-string (into {} (filter second mail))))
+  (->> mail
+       (filter (comp some? val))                            ;; Filter out keys with nil values
+       (into {})
+       (generate-string)))
 
 (defn- send-to-postmark [api-key mail]
   (let [resp (client/post "http://api.postmarkapp.com/email"
@@ -20,21 +23,20 @@
         body (parse-string (:body resp))]
     (assoc resp :body body)))
 
-(defn- get-to-string
+(defn- to-string
   "Create a string appropriate for the to/cc/bcc fields in a Postmark call.
 
   Can be passed a email address as a string like 'foo@bar.com' or
   'Foo Bar <foo@bar.com>', or a seq of such strings."
   [to]
   (when to
-    (if (= java.lang.String (class to))
+    (if (string? to)
       to
       (join "," to))))
 
 (defn- no-more-than-50-recipients [to]
-  (or (= java.lang.String (class to))
+  (or (string? to)
       (<= (count to) 50)))
-
 
 (defn- mail
   "Send an email with the Postmark API.
@@ -43,10 +45,10 @@
   [api-key from {:keys [to subject cc bcc tag text html reply-to]}]
   {:pre [(no-more-than-50-recipients to)]}
   (send-to-postmark api-key {"From" from
-                             "To" (get-to-string to)
+                             "To" (to-string to)
                              "Subject" subject
-                             "Cc" (get-to-string cc)
-                             "Bcc" (get-to-string bcc)
+                             "Cc" (to-string cc)
+                             "Bcc" (to-string bcc)
                              "Tag" tag
                              "TextBody" text
                              "HtmlBody" html
