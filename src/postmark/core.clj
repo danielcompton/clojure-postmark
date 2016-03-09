@@ -15,13 +15,12 @@
        (generate-string)))
 
 (defn- send-to-postmark [api-key mail]
-  (let [resp (client/post "https://api.postmarkapp.com/email"
-                          {:body (mail-to-json mail)
-                           :headers {"X-Postmark-Server-Token" api-key}
-                           :content-type :json
-                           :accept :json})
-        body (parse-string (:body resp))]
-    (assoc resp :body body)))
+  (client/post "https://api.postmarkapp.com/email"
+               {:body         (mail-to-json mail)
+                :headers      {"X-Postmark-Server-Token" api-key}
+                :content-type :json
+                :accept       :json
+                :as           :json}))
 
 (defn- to-string
   "Create a string appropriate for the to/cc/bcc fields in a Postmark call.
