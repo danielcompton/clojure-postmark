@@ -20,6 +20,7 @@
                 :headers      {"X-Postmark-Server-Token" api-key}
                 :content-type :json
                 :accept       :json
+                :coerce       :always
                 :as           :json}))
 
 (defn- to-string
