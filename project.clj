@@ -1,4 +1,4 @@
-(defproject org.clojars.danielcompton/postmark "1.3.0-SNAPSHOT"
+(defproject org.clojars.danielcompton/postmark "1.3.0"
   :description "Clojure bindings for http://postmarkapp.com/"
   :url "https://github.com/sjl/clojure-postmark"
   :scm {:name "git"
