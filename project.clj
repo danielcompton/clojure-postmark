@@ -6,6 +6,8 @@
   :license {:name "MIT"
             :url "https://github.com/sjl/clojure-postmark/blob/master/LICENSE.markdown"}
   :exclusions  [org.clojure/clojure]
+  :deploy-repositories [["releases" :clojars]
+                        ["snapshots" :clojars]]
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [cheshire "5.4.0"]
                  [clj-http "2.1.0"]]
