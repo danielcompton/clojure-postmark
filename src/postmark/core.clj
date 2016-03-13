@@ -59,6 +59,9 @@
                              "ReplyTo" reply-to}))
 
 (defn- mail-template
+  "Send an email using template with the Postmark API.
+
+  Remember: Postmark only lets you send to at most twenty addresses at once."
   [api-key from {:keys [:to, :template_id, :template_model]}]
   (send-to-postmark api-key {"From" from
                                    "To" (get-to-string to)
