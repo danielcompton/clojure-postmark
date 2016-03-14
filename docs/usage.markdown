@@ -45,13 +45,13 @@ There are a few other keys you can use in the map you pass to the call:
 Postmark also support [templates](https://www.google.com.br/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=postmark%20template). In this case you need to use
 ``postmark-template`` function instead of ``postmark``:
 
-   :::clojure
-   (def pmt (postmark-template "YOUR_API_KEY" "from-address@example.com"))
+    :::clojure
+    (def pmt (postmark-template "YOUR_API_KEY" "from-address@example.com"))
 
 Now just call the function to send an email using a existing template:
 
-   :::clojure
-   (pmt {:to "fuffy@example.com", :template_id 383213, :template_model {:name "John Locke"}})
+    :::clojure
+    (pmt {:to "fuffy@example.com", :template_id 383213, :template_model {:name "John Locke"}})
 
 ## Testing
 
