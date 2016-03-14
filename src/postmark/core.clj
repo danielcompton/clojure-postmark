@@ -71,5 +71,8 @@
 (defn postmark [api-key from]
   (partial mail api-key from))
 
+(defn postmark-template [api-key from]
+  (partial mail-template api-key from))
+
 (defn postmark-test [from]
   (postmark "POSTMARK_API_TEST" from))
