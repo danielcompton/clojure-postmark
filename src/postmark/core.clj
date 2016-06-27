@@ -42,10 +42,10 @@
   "Send an email with the Postmark API.
 
   Remember: Postmark only lets you send to at most fifty addresses at once."
-  [api-key from {:keys [to subject cc bcc tag text html reply-to headers]}]
+  [api-key default-from {:keys [to subject cc bcc from tag text html reply-to headers]}]
   {:pre [(no-more-than-50-recipients to)]}
   (send-to-postmark "email/" api-key
-                    {"From"     from
+                    {"From"     (or from default-from)
                      "To"       (to-string to)
                      "Subject"  subject
                      "Cc"       (to-string cc)
