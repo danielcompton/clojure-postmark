@@ -14,8 +14,8 @@
        (into {})
        (generate-string)))
 
-(defn- send-to-postmark [api-key mail]
-  (client/post "https://api.postmarkapp.com/email"
+(defn- send-to-postmark [path api-key mail]
+  (client/post (str "https://api.postmarkapp.com/" path)
                {:body         (mail-to-json mail)
                 :headers      {"X-Postmark-Server-Token" api-key}
                 :content-type :json
@@ -42,17 +42,19 @@
   "Send an email with the Postmark API.
 
   Remember: Postmark only lets you send to at most fifty addresses at once."
-  [api-key from {:keys [to subject cc bcc tag text html reply-to]}]
+  [api-key from {:keys [to subject cc bcc tag text html reply-to headers]}]
   {:pre [(no-more-than-50-recipients to)]}
-  (send-to-postmark api-key {"From" from
-                             "To" (to-string to)
-                             "Subject" subject
-                             "Cc" (to-string cc)
-                             "Bcc" (to-string bcc)
-                             "Tag" tag
-                             "TextBody" text
-                             "HtmlBody" html
-                             "ReplyTo" reply-to}))
+  (send-to-postmark "email/" api-key
+                    {"From"     from
+                     "To"       (to-string to)
+                     "Subject"  subject
+                     "Cc"       (to-string cc)
+                     "Bcc"      (to-string bcc)
+                     "Tag"      tag
+                     "TextBody" text
+                     "HtmlBody" html
+                     "ReplyTo"  reply-to
+                     "Headers"  headers}))
 
 
 (defn postmark [api-key from]
