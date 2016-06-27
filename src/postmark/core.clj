@@ -64,3 +64,16 @@
 
 (defn postmark-test [from]
   (postmark postmark-test-api-key from))
+
+(defn mail-with-template
+  [api-key from {:keys [to cc bcc tag reply-to template-id template-model]}]
+  (send-to-postmark "email/withTemplate/" api-key
+                    {"From"          from
+                     "To"            (to-string to)
+                     "Cc"            (to-string cc)
+                     "Bcc"           (to-string bcc)
+                     "Tag"           tag
+                     "ReplyTo"       reply-to
+                     "TemplateId"    template-id
+                     "TemplateModel" template-model}))
+
