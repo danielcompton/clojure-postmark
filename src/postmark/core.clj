@@ -35,12 +35,20 @@
   (or (= java.lang.String (class to))
       (<= (count to) 20)))
 
+(defn- attachment
+  "Add attachment to email.  Content must be a base64 encoded string."
+  [{:keys [name content content-type]}]
+  {
+    "Name" name
+    "Content" content
+    "ContentType" content-type})
+
 
 (defn- mail
   "Send an email with the Postmark API.
 
   Remember: Postmark only lets you send to at most twenty addresses at once."
-  [api-key from {:keys [to subject cc bcc tag text html reply-to]}]
+  [api-key from {:keys [to subject cc bcc tag text html reply-to attachments]}]
   {:pre [(no-more-than-20-recipients to)]}
   (send-to-postmark api-key {"From" from
                              "To" (get-to-string to)
@@ -50,7 +58,8 @@
                              "Tag" tag
                              "TextBody" text
                              "HtmlBody" html
-                             "ReplyTo" reply-to}))
+                             "ReplyTo" reply-to
+                             "Attachments" (map attachment attachments)}))
 
 
 (defn postmark [api-key from]
