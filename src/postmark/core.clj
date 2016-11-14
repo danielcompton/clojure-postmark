@@ -11,8 +11,14 @@
   [mail]
   (generate-string (into {} (filter second mail))))
 
+(defn- postmark-url [mail]
+  "Return the correct postmark API url."
+  (if (contains? mail "TemplateId")
+    "http://api.postmarkapp.com/email/withTemplate"
+    "http://api.postmarkapp.com/email"))
+
 (defn- send-to-postmark [api-key mail]
-  (let [resp (client/post "http://api.postmarkapp.com/email"
+  (let [resp (client/post (postmark-url mail)
                           {:body (mail-to-json mail)
                            :headers {"X-Postmark-Server-Token" api-key}
                            :content-type :json
@@ -52,9 +58,21 @@
                              "HtmlBody" html
                              "ReplyTo" reply-to}))
 
+(defn- mail-template
+  "Send an email using template with the Postmark API.
+
+  Remember: Postmark only lets you send to at most twenty addresses at once."
+  [api-key from {:keys [:to, :template_id, :template_model]}]
+  (send-to-postmark api-key {"From" from
+                                   "To" (get-to-string to)
+                                   "TemplateId" template_id
+                                   "TemplateModel" template_model}))
 
 (defn postmark [api-key from]
   (partial mail api-key from))
+
+(defn postmark-template [api-key from]
+  (partial mail-template api-key from))
 
 (defn postmark-test [from]
   (postmark "POSTMARK_API_TEST" from))
