@@ -7,4 +7,7 @@ clojure-postmark
 
 This project was originally created by [Steve Losh](http://stevelosh.com) and is maintained by [Daniel Compton](https://danielcompton.net).
 
+* Documentation: <https://danielcompton.github.io/clojure-postmark/>
+* Source (Git): <http://github.com/danielcompton/clojure-postmark>
+* Issues: <http://github.com/danielcompton/clojure-postmark/issues>
 * License: [MIT/X11](http://www.opensource.org/licenses/mit-license.php)
