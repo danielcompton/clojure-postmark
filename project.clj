@@ -1,4 +1,4 @@
-(defproject postmark "1.4.0-SNAPSHOT"
+(defproject postmark "1.4.0"
   :description "Clojure bindings for http://postmarkapp.com/"
   :url "https://github.com/sjl/clojure-postmark"
   :scm {:name "git"
