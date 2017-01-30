@@ -1,7 +1,7 @@
 clojure-postmark
 ================
 [![Dependencies Status](http://jarkeeper.com/danielcompton/clojure-postmark/status.svg)](http://jarkeeper.com/danielcompton/clojure-postmark)
-[![Clojars Project](http://clojars.org/org.clojars.danielcompton/postmark/latest-version.svg)](http://clojars.org/org.clojars.danielcompton/postmark)
+[![Clojars Project](https://img.shields.io/clojars/v/postmark.svg)](https://clojars.org/postmark)
 
 `clojure-postmark` lets you talk to [Postmark](http://postmarkapp.com/) from
 Clojure.
