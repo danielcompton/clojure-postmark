@@ -1,3 +1,22 @@
+`clojure-postmark` lets you talk to [Postmark](http://postmarkapp.com/) from
+Clojure.
+
+* Documentation: <https://danielcompton.github.io/clojure-postmark/>
+* Source (Git): <http://github.com/danielcompton/clojure-postmark>
+* Issues: <http://github.com/danielcompton/clojure-postmark/issues>
+* License: [MIT/X11](http://www.opensource.org/licenses/mit-license.php)
+
+
+Installation
+============
+
+To get started just slap this in your `project.clj` `:dependencies`:
+
+    [postmark "1.1.0"]
+
+`clojure-postmark` works with Clojure 1.8.0.
+
+
 Usage
 =====
 
@@ -54,3 +73,9 @@ instead of `postmark`:
     (pt {:to ["fluffy@example.com" "sprinkles@example.com"]
          :subject "Testing"
          :text "I might want your noms."})
+
+---
+
+Created by [Steve Losh](http://stevelosh.com), and maintained by [Daniel Compton](https://danielcompton.net).
+
+
