@@ -7,7 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-- Will be released again under `[postmark x.y.z]`
+## [1.4.0] - 2017-01-31
+
+### Added
+
+- This changelog
+
+### Changed
+
+- New release, now under `[postmark 1.4.0]` as I (Daniel Compton) have taken over maintaining clojure-postmark.
+- Docs tweaked
 
 ## [1.3.2] - 2016-06-27
 
@@ -32,6 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 [Unreleased]: https://github.com/danielcompton/clojure-postmark/compare/1.3.2...HEAD
+[1.4.0]: https://github.com/danielcompton/clojure-postmark/compare/1.3.2...1.4.0
 [1.3.2]: https://github.com/danielcompton/clojure-postmark/compare/1.3.1...1.3.2
 [1.3.1]: https://github.com/danielcompton/clojure-postmark/compare/1.3.0...1.3.1
 [1.3.0]: https://github.com/danielcompton/clojure-postmark/compare/v1.1.0...1.3.0
