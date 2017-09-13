@@ -1,8 +1,7 @@
 (ns postmark.core
   (:require [clj-http.client :as client]
-            [clojure.string :refer [join]]
-            [cheshire.core :refer [generate-string parse-string]]))
-
+            [clojure.string :as string]
+            [cheshire.core :as json]))
 
 (defn- mail-to-json
   "Return the JSON for the given mail map.
@@ -12,7 +11,7 @@
   (->> mail
        (filter (comp some? val))                            ;; Filter out keys with nil values
        (into {})
-       (generate-string)))
+       (json/generate-string)))
 
 (defn- send-to-postmark [path api-key mail]
   (client/post (str "https://api.postmarkapp.com/" path)
@@ -32,7 +31,7 @@
   (when to
     (if (string? to)
       to
-      (join "," to))))
+      (string/join "," to))))
 
 (defn- no-more-than-50-recipients [to]
   (or (string? to)
